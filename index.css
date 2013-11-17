@@ -1,0 +1,147 @@
+body{
+
+	width: 100%;
+	height: 100%;
+	overflow-x: hidden; 
+}
+#logo{
+
+	height: 75%
+
+
+}
+
+#logoplaceholder{
+	text-align: right;
+	height: 48px;
+	float: right;
+	margin-right: 2%;
+}
+#container{
+
+	display: block;
+
+
+}
+
+#outlet{
+
+	width: 90%;
+
+}
+
+#first{
+	margin: 0px;
+	height: 90%;
+	background-image: url("assets/images/car3.png");
+	background-size: 100%;
+}
+
+#explanation{
+	height: 50%;
+	background-color: rgb(0,121,191);
+
+}
+
+#leaf{
+	width: 45%;
+	margin-left: 100px;
+}
+
+#cutcord{
+	background-color: rgb(0,146,230);
+	height: 45%
+}
+
+#mobile{
+	background-color: rgb(92,189,244);
+	height: 45%
+}
+#map{
+	height:500px
+}
+
+.menubar{
+	width: 100%;
+	padding: 10px;
+	background-color: rgb(0,162,255);
+	height: 35px;
+	position: fixed;
+	opacity: 0.8;
+}
+
+.menubar li{
+	display: block;
+	float: left;
+	padding-left: 5px;
+	padding-right: 5px;
+	height: 10%;
+	z-index: 999;
+}
+
+
+.cards{
+
+	width: 100%;
+	padding: 5%;
+
+}
+
+.herotext{
+	font-size: 60px;
+	font-family: 'Doppio One', sans-serif;
+	font-weight: bold;
+	color: white;
+	text-align: center;
+}
+
+.divider{
+	float: left;
+	width: 50%;
+
+}
+
+.normal{
+	padding-top: 25px;
+	font-family: 'Doppio One', sans-serif;
+	color: rgb(255,255,255);
+	font-size:35px;
+}
+
+.bolded{
+
+	font-weight: bold;
+	font-size: 70px;
+
+}
+
+h2{
+
+	font-family: 'Doppio One', sans-serif;
+	color: rgb(255,255,255);
+
+}
+
+.menulink{
+
+	text-decoration: none;
+	color: rgb(255,255,255);
+	font-family: 'Doppio One', sans-serif;
+	font-size: 30px;
+	padding-left: 5px;
+	padding-right: 5px;
+}
+
+.menulink:hover{
+	color: rgb(0,0,179);
+
+}
+
+.wrapper 
+{
+	margin: 0 auto;
+}
+.clearFix 
+{
+	clear:both;
+}

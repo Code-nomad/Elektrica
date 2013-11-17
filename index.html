@@ -1,0 +1,220 @@
+<html>
+	<head>
+		<title>Elektrica - charge your future</title>
+		<link href="index.css" rel="stylesheet" type="text/css" media="screen" />
+		<link href="http://meyerweb.com/eric/tools/css/reset/reset.css" rel="stylesheet" type="text/css" />
+		<link href='http://fonts.googleapis.com/css?family=Doppio+One' rel='stylesheet' type='text/css'>
+
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+		<script src="http://maps.google.com/maps/api/js?v=3&sensor=false" type="text/javascript"></script>
+		
+		<script type="text/javascript">
+	
+	var icon = new google.maps.MarkerImage(
+		"car.png",  
+		new google.maps.Size(32, 37), new google.maps.Point(0, 0),  
+		new google.maps.Point(16, 37)
+	);
+		
+	var center = null;
+	var map = null;
+	var currentPopup;
+	var bounds = new google.maps.LatLngBounds();
+	var geocoder = new google.maps.Geocoder();
+
+	function addMarker(pt, info) {
+
+	
+	  bounds.extend(pt);
+  
+	  var marker = new google.maps.Marker({
+		  position: pt,
+		  icon: icon,
+		  map: map
+	  });
+
+	  var popup = new google.maps.InfoWindow({
+		  content: info,
+		  maxWidth: 300
+	  });
+
+	  google.maps.event.addListener(marker, "click", function() {
+		  if (currentPopup != null) {
+			currentPopup.close();
+			currentPopup = null;
+		  }
+
+		  popup.open(map, marker);
+		  currentPopup = popup;
+	  });
+
+	  google.maps.event.addListener(popup, "closeclick", function() {
+		currentPopup = null;
+	  });
+
+	}
+	
+	function initMap() {
+		map = new google.maps.Map(document.getElementById("map"), {
+			center: new google.maps.LatLng(51.1890850,4.3836280),
+			zoom: 10,
+			mapTypeId: google.maps.MapTypeId.ROADMAP,
+			mapTypeControl: false,
+			mapTypeControlOptions: {
+				style: google.maps.MapTypeControlStyle.HORIZONTAL_BAR
+			},
+			navigationControl: true,
+			navigationControlOptions: {
+				style: google.maps.NavigationControlStyle.SMALL
+			}
+		});
+		
+	}
+	
+$( document ).ready(function() {
+	
+	$.ajax({
+		url: "http://127.0.0.1/elektrika/antwerpen.php"
+	})
+	.done(function( data ) {
+		$.each( data, function(key) {
+		
+		geocoder.geocode( { 'address': data[key].zip + ' ' + data[key].city + ', ' + data[key].street}, function(results, status) {
+		  if (status == google.maps.GeocoderStatus.OK) {
+			setTimeout( addMarker(results[0].geometry.location,'<b>Go go go darling! Kisses... xXx') , 5000 );
+		  } else {
+			console.log("Geocode was not successful for the following reason: " + status);
+		  }
+		  
+		});
+		
+		});
+	});
+	
+	
+	$( window ).scroll(function() {
+	
+	$('#btnMap,#btnMobile,#btnService,#btnExplanation').css('color','#bfc8cc');
+	
+		if ( $(document).scrollTop() > 2500 ){
+		
+			$('#btnMap').css('color','#272dbe');
+		}
+		
+		else if ( $(document).scrollTop() > 2280 ){
+			$( "#map" ).animate({
+				opacity: 1,
+			}, 750);
+			
+			$('#btnMobile').css('color','#272dbe');
+		}
+		
+		else if ( $(document).scrollTop() > 1700 ){
+			$( "#mobile" ).animate({
+				opacity: 1,
+			}, 750);
+			
+			
+			$('#btnService').css('color','#272dbe');
+		} 
+		
+		else if ( $(document).scrollTop() > 1060 ){
+			$( "#cutcord" ).animate({
+				opacity: 1,
+			}, 750);
+			
+			
+			$('#btnExplanation').css('color','#272dbe');
+		}
+		
+		
+		else if($(document).scrollTop() > 50) {
+			$( "#explanation" ).animate({
+				opacity: 1,
+			}, 750);
+			
+		}
+	});
+
+});
+	</script>
+	
+	</head>
+
+	<body onload="initMap()">
+		<ul class="menubar">			<!-- Menu to switch cards-->
+			<li><a class="menulink" id="btnExplanation" href="#explanation">explanation</a></li>
+			<li><a class="menulink" id="btnService" href="#cutcord">service</a></li>
+			<li><a class="menulink" id="btnMobile" href="#mobile">mobile</a></li>
+			<li><a class="menulink" id="btnMap" href="#map">map</a></li>
+			<li id="logoplaceholder"><img id="logo" src="assets/images/logowhite.png"></li>
+		</ul>
+		<div id="container">
+
+			<div class="cards" id="first">
+				<p class="herotext">supercharge your electric experience</p>
+			</div>
+
+			<div class="cards" id="explanation"  style="opacity: 0.2;">
+				<div class="wrapper">
+					<div class="divider">
+						<p class="normal">
+							Elektrica is a service designed for electric mobility. <br>
+							Charging points  are all over the place. <br/>
+							The only problem is finding them. <br/>
+							We aim to provide the location data so you can just <br> <br>  <br><span id="bolded">sit back, relax and let the GPS do the work.</span> <br/>
+					</p></div>
+					<div class="divider"><img id="leaf" src="assets/images/leaf.png" style="margin-left: 120px;"></div>
+				</div>
+			</div>
+			
+
+			<div class="cards" id="cutcord"  style="opacity: 0.2;">
+				<div class="wrapper">
+					<div class="divider"><img id="outlet" src="assets/images/outletcombo.png"></div>
+					<div class="divider" style="width: 33%;">
+						<p class="normal">
+							Charging points  are all over the place. <br/>
+							The only problem is finding them. <br/>
+							We aim to provide the location data so you can just <br> <br>  <br><span id="bolded">sit back, relax and let the GPS do the work.</span> <br/>
+					</p>
+
+					</div>
+				</div>
+			</div>
+
+
+			<div class="cards" id="mobile"  style="opacity: 0.2;">
+				<div class="wrapper">
+					<div class="divider">
+						<p class="herotext">
+							Mobile application coming soon. <br>
+							Based on fences and gps location uplinking.<br> 
+							<br><span id="bolded">sit back, relax and let the GPS do the work.</span> <br/>
+						</p>
+					</div>
+					<div class="divider">
+						<img id="leaf" src="assets/images/phone.png">
+					</div>
+				</div>
+			</div>
+			
+			
+			<div class="cards" id="map"  style="opacity: 0.2;">
+				<div class="wrapper">
+				
+					<div class="divider">
+						<p class="herotext">
+							Location
+						</p>
+					</div>
+					
+					
+				</div>
+			</div>
+
+		</div>
+
+	</body>
+
+</html>
