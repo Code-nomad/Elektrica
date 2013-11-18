@@ -11,6 +11,7 @@ This software has been commited and published under a GNU GPL license. This excl
 Elektrica and its logo, icons, etc. Thes resources are under the ownership of me and J. Brauns.
 
 The leaf icon is teken from an open clipart resource website.
+
 The chevrolet photo in the first div is property of chevrolet. 
 
 Should copyright questions arise on either of these images, please contact us through the issue page.
